@@ -18,7 +18,7 @@ class ModuleMapPage extends StatelessWidget {
                 Container(
                   height: 100,
                 ),
-                Container(
+                SizedBox(
                   height: 500,
                   child: SizedBox.expand(
                     child: Image.asset(
@@ -52,9 +52,9 @@ AppBar _buildModuleMapAppBar(BuildContext context) {
     backgroundColor: Colors.transparent,
     toolbarHeight: 70,
     centerTitle: true,
-    title: Text(
+    title: const Text(
       "모듈맵",
-      style: const TextStyle(
+      style: TextStyle(
           fontSize: TextSize.medium, fontWeight: FontWeight.w700),
     ),
     leading: Row(

@@ -4,7 +4,7 @@ import 'package:appy_app/widgets/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(AppyApp());
+  runApp(const AppyApp());
   // runApp(const MaterialApp(
   //   home: ChatPage(),
   // ));

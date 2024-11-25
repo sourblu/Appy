@@ -21,7 +21,7 @@ class SettingPage extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.add_home_outlined,
                       size: IconSize.small,
                       color: AppColors.icon,
@@ -29,7 +29,7 @@ class SettingPage extends StatelessWidget {
                     Container(
                       width: 10,
                     ),
-                    Text(
+                    const Text(
                       "기기 등록",
                       style: TextStyle(
                         color: AppColors.textMedium,

@@ -22,7 +22,7 @@ class SignUpPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "회원가입",
                             style: TextStyle(
                               fontSize: 40,

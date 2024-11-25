@@ -133,7 +133,7 @@ AppBar BuildBigAppBar(BuildContext context, String title, String imagePath) {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          padding: EdgeInsets.only(bottom: 20),
+          padding: const EdgeInsets.only(bottom: 20),
           child: Image.asset(
             imagePath,
             width: 50,

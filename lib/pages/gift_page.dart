@@ -4,41 +4,46 @@ import 'package:appy_app/widgets/widget.dart';
 import 'package:flutter/material.dart';
 
 class GiftPage extends StatefulWidget {
-  final int characterId = 1; // 캐릭터 ID 전달
-  final int characterLevel = 5; // 해당 캐릭터의 레벨
+  final int characterId = 3; // 캐릭터 ID 전달
+  final int characterLevel = 3; // 해당 캐릭터의 레벨
   const GiftPage({super.key});
+  // const GiftPage({
+  //   super.key
+  //   // this.characterId = 1, // 기본값 레비
+  //   // this.characterLevel = 5, // 테스트 레벨
+  // });
 
   @override
   State<GiftPage> createState() => _GiftPageState();
 }
 
 class _GiftPageState extends State<GiftPage> {
-  final Map<int, Map<int, String>> characterItems = {
-    1: {
-      1: "assets/icons/gift/gift_1_1.png",
-      2: "assets/icons/gift/gift_1_2.png",
-      3: "assets/icons/gift/gift_1_3.png",
-      4: "assets/icons/gift/gift_1_4.png",
-      5: "assets/icons/gift/gift_1_5.png",
-      6: "assets/icons/gift/gift_1_6.png",
-      7: "assets/icons/gift/gift_1_7.png",
-    },
-    2: {
-      1: "assets/icons/gift/gift_2_1.png",
-      2: "assets/icons/gift/gift_2_2.png",
-      3: "assets/icons/gift/gift_2_3.png",
-      4: "assets/icons/gift/gift_2_4.png",
-    },
-  };
+  String _getAppBarTitle(int characterId) {
+    // 캐릭터 이름 반환
+    switch (characterId) {
+      case 1:
+        return "래비의 선물함";
+      case 2:
+        return "누비의 선물함";
+      case 3:
+        return "밥이의 선물함";
+      default:
+        return "캐릭터의 선물함";
+    }
+  }
+
+  String _getGiftImagePath(int characterId, int level) {
+    // 이미지 경로 동적 생성
+    return "assets/icons/gift/gift_${characterId}_${level}.png";
+  }
 
   @override
   Widget build(BuildContext context) {
-    final items = characterItems[widget.characterId] ?? {};
     return Scaffold(
       appBar: BuildBigAppBar(
         context,
-        "래비의 선물함",
-        "assets/icons/gift_box.png",
+        _getAppBarTitle(widget.characterId),
+        "assets/icons/gift_box.png", // 아이콘은 동일
       ),
       body: SafeArea(
         child: Padding(
@@ -57,16 +62,19 @@ class _GiftPageState extends State<GiftPage> {
                   itemCount: 12, // 항상 12개의 아이템 슬롯을 렌더링
                   itemBuilder: (context, index) {
                     final level = index + 1; // 레벨 기준
-                    if (level <= widget.characterLevel &&
-                        items.containsKey(level)) {
+                    if (level <= widget.characterLevel) {
+                      // 잠금 해제된 아이템
                       return GestureDetector(
                         onTap: () {
-                          _onUnlockedItemTap(level); // 잠금 해제된 아이템 클릭
+                          _onUnlockedItemTap(level);
                         },
-                        child: _buildUnlockedItem(items[level]!),
+                        child: _buildUnlockedItem(
+                          _getGiftImagePath(widget.characterId, level),
+                        ),
                       );
                     } else {
-                      return _buildLockedItem(); // 잠금 상태 아이템
+                      // 잠금 상태 아이템
+                      return _buildLockedItem();
                     }
                   },
                 ),
@@ -105,7 +113,8 @@ class _GiftPageState extends State<GiftPage> {
           ),
         ],
       ),
-      child: Center(
+      child: Padding(
+        padding: const EdgeInsets.all(10.0), // 이미지에 추가적인 여백 설정
         child: Image.asset(
           imagePath,
           fit: BoxFit.contain,

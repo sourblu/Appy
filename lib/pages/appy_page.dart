@@ -94,7 +94,7 @@ class _AppyPageState extends State<AppyPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(
+          title: const Text(
             "축하합니다!",
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.w600),
@@ -102,7 +102,7 @@ class _AppyPageState extends State<AppyPage> {
           content: Text(
             "$appyName의 선물이 도착했습니다.\n선물함을 확인해주세요.",
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: TextSize.small, fontWeight: FontWeight.w600),
           ),
           actions: [
@@ -113,7 +113,7 @@ class _AppyPageState extends State<AppyPage> {
                   _isNewGift = true;
                 });
               },
-              child: Text("확인"),
+              child: const Text("확인"),
             ),
           ],
         );
@@ -157,7 +157,7 @@ class _AppyPageState extends State<AppyPage> {
                           child: Container(
                             height: 20, // 그림자가 적용될 영역 높이
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 bottomLeft:
                                     Radius.circular(30), // 왼쪽 하단 모서리 둥글게
                                 bottomRight:
@@ -168,7 +168,7 @@ class _AppyPageState extends State<AppyPage> {
                                   color: Colors.grey.withOpacity(0.5),
                                   blurRadius: 5.0, // 그림자 흐림 정도
                                   spreadRadius: 1.0, // 그림자 확산 정도
-                                  offset: Offset(0, 2), // 그림자 방향
+                                  offset: const Offset(0, 2), // 그림자 방향
                                 ),
                               ],
                             ),
@@ -176,11 +176,11 @@ class _AppyPageState extends State<AppyPage> {
                         ),
                         // 이미지 하단 모서리 둥글게
                         ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             bottomLeft: Radius.circular(20), // 왼쪽 하단 모서리 둥글게
                             bottomRight: Radius.circular(20), // 오른쪽 하단 모서리 둥글게
                           ),
-                          child: Container(
+                          child: SizedBox(
                             height: 420,
                             child: Image.asset(
                               "assets/images/appy_background2.png",
@@ -198,7 +198,7 @@ class _AppyPageState extends State<AppyPage> {
                           height: 30,
                         ),
                         //말풍선 영역
-                        Container(
+                        SizedBox(
                           height: 90,
                           child: SpeechBubble(
                               text: randomText,
@@ -258,8 +258,8 @@ class _AppyPageState extends State<AppyPage> {
                   padding: const EdgeInsets.all(15.0),
                   // 에피 이름 가져오기
                   child: Text(
-                    "$appyName",
-                    style: TextStyle(
+                    appyName,
+                    style: const TextStyle(
                       fontSize: TextSize.large,
                       fontWeight: FontWeight.bold,
                     ),
@@ -275,7 +275,7 @@ class _AppyPageState extends State<AppyPage> {
                       Container(
                         height: 100, // 컨테이너 높이
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(20), // 상단 왼쪽 둥글게
                             topRight: Radius.circular(20), // 상단 오른쪽 둥글게
                           ),
@@ -285,7 +285,7 @@ class _AppyPageState extends State<AppyPage> {
                               color: Colors.grey.withOpacity(0.2),
                               blurRadius: 3.0, // 흐림 정도
                               spreadRadius: 1, // 확산 범위
-                              offset: Offset(0, -2), // 상단 방향으로 그림자 이동
+                              offset: const Offset(0, -2), // 상단 방향으로 그림자 이동
                             ),
                           ],
                         ),
@@ -293,7 +293,7 @@ class _AppyPageState extends State<AppyPage> {
                       // 메인 컨테이너 (하단 그림자 제거)
                       Container(
                         height: 200,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.background, // 하단 배경과 동일한 색상
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20), // 상단 왼쪽 둥글게
@@ -325,7 +325,7 @@ class _AppyPageState extends State<AppyPage> {
                                 //     style: TextStyle(
                                 //       color: AppColors.textWhite,
                                 //     )),
-                                barRadius: Radius.circular(15.0),
+                                barRadius: const Radius.circular(15.0),
                                 progressColor: AppColors.accent,
                               ),
                               Image.asset(
@@ -334,7 +334,7 @@ class _AppyPageState extends State<AppyPage> {
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 20,
                           ),
                           Row(
@@ -349,7 +349,7 @@ class _AppyPageState extends State<AppyPage> {
                                           _feed(); // 사탕 주기 로직 실행
                                         } else {
                                           ScaffoldMessenger.of(context)
-                                              .showSnackBar(SnackBar(
+                                              .showSnackBar(const SnackBar(
                                             duration: Duration(seconds: 1),
                                             backgroundColor: AppColors.primary,
                                             content: Center(
@@ -364,7 +364,7 @@ class _AppyPageState extends State<AppyPage> {
                                         }
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.all(3.0),
+                                        padding: const EdgeInsets.all(3.0),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
                                                 BorderRadius.circular(20)),
@@ -394,9 +394,9 @@ class _AppyPageState extends State<AppyPage> {
                                           Container(
                                             height: 5,
                                           ),
-                                          Container(
+                                          SizedBox(
                                             width: 105,
-                                            child: Center(
+                                            child: const Center(
                                               child: Text(
                                                 "사탕 주기",
                                                 maxLines: 1,
@@ -413,7 +413,7 @@ class _AppyPageState extends State<AppyPage> {
                                       right: 10,
                                       child: Text(
                                         "$currentCandyNum개",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -436,7 +436,7 @@ class _AppyPageState extends State<AppyPage> {
                                                 const ChatPage()));
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(3.0),
+                                    padding: const EdgeInsets.all(3.0),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(20)),
@@ -467,9 +467,9 @@ class _AppyPageState extends State<AppyPage> {
                                           Container(
                                             height: 5,
                                           ),
-                                          Container(
+                                          SizedBox(
                                             width: 105,
-                                            child: Center(
+                                            child: const Center(
                                               child: Text(
                                                 "대화하기",
                                                 maxLines: 1,
@@ -509,7 +509,7 @@ class _AppyPageState extends State<AppyPage> {
                                                 const GiftPage()));
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    padding: EdgeInsets.all(3.0),
+                                    padding: const EdgeInsets.all(3.0),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(20)),
@@ -540,9 +540,9 @@ class _AppyPageState extends State<AppyPage> {
                                           Container(
                                             height: 5,
                                           ),
-                                          Container(
+                                          SizedBox(
                                             width: 105,
-                                            child: Center(
+                                            child: const Center(
                                               child: Text(
                                                 "선물함",
                                                 maxLines: 1,
@@ -586,8 +586,8 @@ class SpeechBubble extends StatefulWidget {
     this.duration = const Duration(milliseconds: 70),
     this.maxWidth = 310,
     this.onAnimationEnd,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _SpeechBubbleState createState() => _SpeechBubbleState();
@@ -654,7 +654,7 @@ class _SpeechBubbleState extends State<SpeechBubble> {
       decoration: BoxDecoration(
         color: AppColors.background,
         borderRadius: BorderRadius.circular(15),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: AppColors.iconShadow,
             blurRadius: 5,

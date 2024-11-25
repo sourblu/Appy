@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          const Text(
                             "로그인",
                             style: TextStyle(
                               fontSize: 40,

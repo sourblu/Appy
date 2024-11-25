@@ -17,6 +17,20 @@ class DiaryPage extends StatefulWidget {
 }
 
 class _DiaryPageState extends State<DiaryPage> {
+  String _getDiaryTitle(int characterId) {
+    // 캐릭터 ID에 따라 다이어리 제목 설정
+    switch (characterId) {
+      case 1:
+        return "래비의 그림일기";
+      case 2:
+        return "누비의 그림일기";
+      case 3:
+        return "밥이의 그림일기";
+      default:
+        return "캐릭터의 그림일기";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // 선택된 캐릭터와 레벨에 따른 이미지 경로 생성
@@ -26,7 +40,7 @@ class _DiaryPageState extends State<DiaryPage> {
     return Scaffold(
       appBar: BuildBigAppBar(
         context,
-        "래비의 그림일기",
+        _getDiaryTitle(widget.characterId), // 동적 제목 설정
         "assets/icons/diary/diary.png",
       ),
       body: SafeArea(
@@ -65,7 +79,7 @@ class _DiaryPageState extends State<DiaryPage> {
           return Text(
             "캐릭터 ${widget.characterId} - 아이템 ${widget.itemLevel}\n이미지가 없습니다.",
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: TextSize.medium,
               color: AppColors.textMedium,
             ),

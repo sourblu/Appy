@@ -20,7 +20,7 @@ class StartPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "Appy",
                         style: TextStyle(
                           fontSize: 60,

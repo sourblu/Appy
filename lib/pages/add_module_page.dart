@@ -40,7 +40,7 @@ class _AddModulePageState extends State<AddModulePage> {
               Container(
                 height: 50,
               ),
-              Text(
+              const Text(
                 "모듈의 QR코드를 인식해주세요",
                 style: TextStyle(
                   color: AppColors.textHigh,
