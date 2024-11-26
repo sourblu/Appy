@@ -19,7 +19,7 @@ class AppyPage extends StatefulWidget {
 
   @override
   State<AppyPage> createState() => _AppyPageState();
-}
+} 
 
 class _AppyPageState extends State<AppyPage> {
   String appyName = "레비";
@@ -192,8 +192,11 @@ class _AppyPageState extends State<AppyPage> {
                     ),
                     // 에피
                     Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Container(
+                          height: 30,
+                        ),
                         //말풍선 영역
                         SizedBox(
                           height: 90,
@@ -232,8 +235,8 @@ class _AppyPageState extends State<AppyPage> {
                                   )),
                               // 에피 이미지
                               Image.asset(
-                                "assets/images/appy_levi_side_light.png",
-                                height: 240,
+                                "assets/images/appy_levi.png",
+                                height: 200,
                               ),
                               // 다음 에피로 이동 버튼
                               IconButton(
@@ -306,7 +309,6 @@ class _AppyPageState extends State<AppyPage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               //프로그레스 바
@@ -317,11 +319,7 @@ class _AppyPageState extends State<AppyPage> {
                                 animation: true,
                                 animationDuration: 200,
                                 animateFromLastPercent: true,
-                                lineHeight: 28.0,
-                                trailing: Image.asset(
-                                      "assets/icons/gift_box_question.png",
-                                      height: 40,
-                                    ),
+                                lineHeight: 30.0,
                                 percent: currentProgressNum / maxSteps,
                                 // center: Text('$currentProgressNum',
                                 //     style: TextStyle(
@@ -329,6 +327,10 @@ class _AppyPageState extends State<AppyPage> {
                                 //     )),
                                 barRadius: const Radius.circular(15.0),
                                 progressColor: AppColors.accent,
+                              ),
+                              Image.asset(
+                                "assets/icons/gift_box_question.png",
+                                height: 45,
                               ),
                             ],
                           ),

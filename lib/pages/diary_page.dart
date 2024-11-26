@@ -43,6 +43,7 @@ class _DiaryPageState extends State<DiaryPage> {
         _getDiaryTitle(widget.characterId), // 동적 제목 설정
         "assets/icons/diary/diary.png",
       ),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
           padding: AppPadding.body,

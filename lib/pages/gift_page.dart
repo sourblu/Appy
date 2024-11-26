@@ -45,14 +45,17 @@ class _GiftPageState extends State<GiftPage> {
         _getAppBarTitle(widget.characterId),
         "assets/icons/gift_box.png", // 아이콘은 동일
       ),
+      backgroundColor: AppColors.background, // 백그라운드 색상 지정
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 42.0),
+          // padding: AppPadding.body, // 공통 패딩 적용
+          padding: const EdgeInsets.only(left: 42.0, right: 42.0, bottom: 20.0),
           child: Column(
             children: [
               const SizedBox(height: 41), // 앱바와 첫 줄 사이 거리
               Expanded(
                 child: GridView.builder(
+                  padding: const EdgeInsets.all(10.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3, // 한 줄에 3개
                     crossAxisSpacing: 30, // 가로 간격

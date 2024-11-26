@@ -174,6 +174,7 @@ class _ChatPageState extends State<ChatPage> with WidgetsBindingObserver {
     return Scaffold(
       appBar: _buildAppBar(),
       resizeToAvoidBottomInset: true, // 키보드 열릴 때 레이아웃 조정
+      backgroundColor: AppColors.background,
       body: Column(
         children: [
           Expanded(
@@ -270,7 +271,7 @@ class _ChatPageState extends State<ChatPage> with WidgetsBindingObserver {
         ),
         title: Row(
           children: [
-            BuildChatImage("assets/images/appy_levi.png", size: 46),
+            BuildChatImage("assets/images/appy_levi_crop.png", size: 46),
             const SizedBox(width: 19),
             Text(
               "레비",
@@ -368,7 +369,7 @@ class _ChatPageState extends State<ChatPage> with WidgetsBindingObserver {
           if (!isUser) ...[
             Column(
               children: [
-                BuildChatImage("assets/images/appy_levi.png"),
+                BuildChatImage("assets/images/appy_levi_crop.png"),
                 const SizedBox(height: 4),
               ],
             ),

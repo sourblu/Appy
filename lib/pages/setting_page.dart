@@ -1,8 +1,10 @@
+import 'package:appy_app/icon/custom_icon_icons.dart';
+import 'package:appy_app/pages/add_appy_page.dart';
+import 'package:appy_app/pages/add_module_page.dart';
 import 'package:appy_app/widgets/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:appy_app/widgets/widget.dart';
 
-// 처음 시작했을때 로그인, 회원가입 버튼 뜨는 창
 class SettingPage extends StatelessWidget {
   const SettingPage({
     super.key,
@@ -12,70 +14,144 @@ class SettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BuildSettingAppBar(context, "사용자 설정"),
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Padding(
           padding: AppPadding.body,
           child: Column(
             children: [
-              Container(
-                height: 20,
-              ),
-              GestureDetector(
-                onTap: () {
-                  // "기기 등록" 클릭 시 팝업 호출
-                  showCustomErrorDialog(
-                    context: context,
-                    message: "기기를 등록해야 사용할 수 있습니다.",
-                    buttonText: "확인",
-                    onConfirm: () {
-                      // 확인 버튼 동작
-                      Navigator.of(context).pop();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("확인 버튼을 눌렀습니다.")),
-                      );
-                    },
-                    cancelButtonText: "취소",
-                    onCancel: () {
-                      // 취소 버튼 동작
-                      Navigator.of(context).pop();
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("취소 버튼을 눌렀습니다.")),
-                      );
-                    },
+              const SizedBox(height: 20),
+              _buildSettingOptionWithDialog(
+                context,
+                icon: CustomIcon.fairy_wand,
+                text: "Appy 등록",
+                message: "Appy를 등록하시겠습니까?",
+                confirmButtonText: "확인",
+                onConfirm: () {
+                  Navigator.of(context).pop(); // 팝업 닫기
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const AddAppyPage(), // AddModulePage로 이동
+                    ),
                   );
                 },
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.add_home_outlined,
-                      size: IconSize.small,
-                      color: AppColors.icon,
-                    ),
-                    Container(
-                      width: 10,
-                    ),
-                    const Text(
-                      "기기 등록",
-                      style: TextStyle(
-                        color: AppColors.textMedium,
-                        fontSize: TextSize.medium,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
               ),
-              Container(
-                height: 10,
+              const SizedBox(height: 20),
+              _buildDivider(),
+              const SizedBox(height: 20),
+              _buildSettingOptionWithDialog(
+                context,
+                icon: Icons.add_home_outlined,
+                text: "모듈 등록",
+                message: "모듈을 등록하시겠습니까?",
+                confirmButtonText: "확인",
+                onConfirm: () {
+                  Navigator.of(context).pop(); // 팝업 닫기
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const AddModulePage(), // AddModulePage로 이동
+                    ),
+                  );
+                },
               ),
-              Container(
-                color: AppColors.buttonDisabled,
-                height: 1,
+              const SizedBox(height: 20),
+              _buildDivider(),
+              const SizedBox(height: 20),
+              _buildSettingOptionWithDialog(
+                context,
+                icon: Icons.logout_outlined,
+                text: "로그아웃",
+                message: "로그아웃 하시겠습니까?",
+                confirmButtonText: "확인",
+                onConfirm: () {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("로그아웃 완료.")),
+                  );
+                },
               ),
+              const SizedBox(height: 20),
+              _buildDivider(),
+              const SizedBox(height: 20),
+              _buildSettingOptionWithDialog(
+                context,
+                icon: Icons.waving_hand_sharp,
+                text: "탈퇴하기",
+                message: "정말 탈퇴하시겠습니까? \n 이 작업은 되돌릴 수 없습니다.",
+                confirmButtonText: "탈퇴",
+                onConfirm: () {
+                  Navigator.of(context).pop();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("탈퇴 완료.")),
+                  );
+                },
+              ),
+              const SizedBox(height: 20),
+              _buildDivider(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  // 공통 옵션 위젯 + 다이얼로그 호출
+  Widget _buildSettingOptionWithDialog(
+    BuildContext context, {
+    required IconData icon,
+    required String text,
+    required String message,
+    required String confirmButtonText,
+    required VoidCallback onConfirm,
+    VoidCallback? onCancel,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        showCustomErrorDialog(
+          context: context,
+          message: message,
+          buttonText: confirmButtonText,
+          onConfirm: onConfirm,
+          cancelButtonText: "취소",
+          onCancel: onCancel ?? () => Navigator.of(context).pop(),
+        );
+      },
+      child: Row(
+        children: [
+          Icon(
+            icon,
+            size: IconSize.small,
+            color: AppColors.icon,
+          ),
+          const SizedBox(width: 10),
+          Text(
+            text,
+            style: const TextStyle(
+              color: AppColors.textMedium,
+              fontSize: TextSize.medium,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          const Spacer(),
+          const Icon(
+            Icons.arrow_forward_ios,
+            size: IconSize.medium,
+            color: AppColors.icon,
+          ),
+        ],
+      ),
+    );
+  }
+
+  // 구분선 위젯
+  Widget _buildDivider() {
+    return Container(
+      color: AppColors.buttonDisabled,
+      height: 1,
     );
   }
 }
